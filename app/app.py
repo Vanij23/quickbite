@@ -19,6 +19,7 @@ MENU = [
     {"id": 2, "name": "Paneer Tikka Roll", "price": 149},
     {"id": 3, "name": "Veg Biryani", "price": 199},
     {"id": 4, "name": "Masala Dosa", "price": 119},
+    {"id": 5, "name": "Cold Coffee", "price": 99},
 ]
 MENU_BY_ID = {m["id"]: m for m in MENU}
 
