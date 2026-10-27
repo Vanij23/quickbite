@@ -1,3 +1,4 @@
+
 """QuickBite - a small food-ordering API for the Cloud DevOps capstone."""
 import json
 import logging
@@ -278,7 +279,7 @@ PAGE = """
       totalEl.textContent = money(total);
       cartEl.replaceChildren();
       if (!picked.length) {
-        cartEl.append(element('div', 'empty-cart', 'Your picks will show up here.\nGo on, choose something good.'));
+        cartEl.append(element('div', 'empty-cart', 'Your picks will show up here.\\nGo on, choose something good.'));
       } else {
         picked.forEach((item) => {
           const line = element('div', 'cart-line');
