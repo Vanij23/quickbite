@@ -216,7 +216,7 @@ PAGE = """
       4: { icon: '🥞', category: 'South Indian favorite', description: 'A golden, crisp dosa made for a proper meal.' },
       5: { icon: '🧋', category: 'Cool-down pick', description: 'A chilled coffee for your afternoon reset.' }
     };
-    let menu = [];
+    let menu = {{ menu | tojson }};
 
     function money(value) { return '₹' + Number(value).toLocaleString('en-IN'); }
     function element(tag, className, text) {
@@ -319,10 +319,8 @@ PAGE = """
     }
     customerEl.addEventListener('input', renderCart);
     checkoutEl.addEventListener('click', placeOrder);
-    fetch('/api/menu')
-      .then((response) => { if (!response.ok) throw new Error('Menu unavailable'); return response.json(); })
-      .then((data) => { menu = data; renderMenu(); renderCart(); })
-      .catch(() => { menuEl.replaceChildren(element('div', 'loading', 'We could not load the menu. Please refresh in a moment.')); });
+    renderMenu();
+    renderCart();
   </script>
 </body>
 </html>
@@ -331,7 +329,7 @@ PAGE = """
 
 @app.get("/")
 def index():
-    return render_template_string(PAGE, version=VERSION[:7])
+    return render_template_string(PAGE, version=VERSION[:7], menu=MENU)
 
 
 @app.get("/health")
